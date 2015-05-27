@@ -1,0 +1,14 @@
+{
+  "name": "ghola-vmbuildhelper",
+  "version": "0.1.0",
+  "author": "ghola",
+  "summary": "Personal puppet module for provisioning virtual machines.",
+  "license": "Apache 2.0",
+  "source": "https://github.com/ghola/puppet-vmbuildhelper",
+  "issues_url": "https://github.com/ghola/puppet-vmbuildhelper/issues",
+  "project_page": "https://github.com/ghola/puppet-vmbuildhelper",
+  "dependencies": [
+    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
+  ]
+}
+

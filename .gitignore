@@ -1,0 +1,7 @@
+# IDE generated files #
+#######################
+.settings
+.project
+.buildpath
+.idea
+
