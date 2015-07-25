@@ -18,6 +18,10 @@ class vmbuildhelper::apache {
     }
   }
 
+  if $apacheconf['custom_configs'] {
+    create_resources(apache::custom_config, $apacheconf['custom_configs'])
+  }
+
 # makes sure apache uses the correct umask
   exec { 'apache umask':
     command => '/bin/echo "umask 002" >> /etc/sysconfig/httpd',
@@ -40,7 +44,7 @@ class vmbuildhelper::apache {
 
   ### Ensure main vhost dir is created so that apache:vhost does not attempt to set file permissions which will fail due to smb mount
     file { "/var/www/${::fqdn}":
-      ensure => directory
+      ensure => "directory"
     }
   }
 }

@@ -36,6 +36,8 @@
 # Copyright 2015 Your name here, unless otherwise noted.
 #
 class vmbuildhelper {
-
-
+  file{ "/etc/profile.d/umask.sh":
+    ensure  => "file",
+    content => "umask 002"
+  }
 }

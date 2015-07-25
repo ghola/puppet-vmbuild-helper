@@ -10,6 +10,7 @@ class vmbuildhelper::couchbase {
       password => $couchconf['password'],
       version  => $couchconf['version'],
       edition  => $couchconf['edition'],
+      ensure   => $couchconf['ensure'],
     }
 
     if $couchconf['buckets'] {
@@ -20,6 +21,10 @@ class vmbuildhelper::couchbase {
       create_resources(couchbase::client, $couchconf['clientlibs'])
     }
 
-    Class['Couchbase'] -> Couchbase::Client <| |> -> Php::Pecl::Module['couchbase']
+    if defined(Php::Pecl::Module['pecl-couchbase']) {
+      Class['Couchbase'] -> Couchbase::Client <| |> -> Php::Pecl::Module['pecl-couchbase']
+    } else {
+      Class['Couchbase'] -> Couchbase::Client <| |> -> Php::Pecl::Module['couchbase']
+    }
   }
 }
