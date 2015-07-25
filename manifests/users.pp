@@ -34,8 +34,8 @@ class vmbuildhelper::users {
               file { "${params['home']}/${file}":
                 ensure  => 'present',
                 source  => "/etc/skel/${file}",
-                group   => $username,
-                owner   => 'wheel',
+                group   => 'wheel',
+                owner   => $username,
                 mode    => 0664,
                 require => File[$params['home']]
               }
