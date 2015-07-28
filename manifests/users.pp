@@ -9,6 +9,14 @@ class vmbuildhelper::users {
 # and that the bash skel files are copied
   if count($usersconf) > 0 {
     $usersconf.each |$username, $params| {
+        if $params['password'] {
+          $password = $params['password']
+          exec { "set password for $username":
+            command => "/bin/echo \"$username:$password\" | /usr/sbin/chpasswd",
+            require => User[$username],
+          }
+        }
+
         if $params['home'] {
           if ! defined(File[$params['home']]) {
             exec { "/bin/mkdir -p ${params['home']}":
