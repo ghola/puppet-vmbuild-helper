@@ -63,7 +63,9 @@ class vmbuildhelper::php {
   }
 
   if $phpconf['composer'] == true {
-    class { '::composer': }
+    class { '::composer':
+      download_method => "wget"
+    }
   }
 
   if $phpconf['ini'] and count($phpconf['ini']) > 0 {
